@@ -1,0 +1,60 @@
+package Biblioteca_2_fase;
+
+import Banco.Conta;
+import Banco.Gerenciamento;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int opcaoUsuario = 0;
+        Biblioteca biblioteca = new Biblioteca();
+
+        do{
+            System.out.println("__________MENU__________"+"\n1) Adicionar livro"+"\n2) Adicionar revista"+"\n3) Exibir livros"+"\n4) Exibir revistas"+"\n5) Excluir livro"+"\n6) Excluir revista"+"\n7) Sair do sistema");
+            System.out.println("Selecione uma opção: ");
+            opcaoUsuario = scan.nextInt();
+
+            try {
+
+                switch (opcaoUsuario){
+
+                    case 1:
+                        biblioteca.adicionarLivro(scan);
+                        return;
+                    case 2:
+                        biblioteca.adicionarRevista(scan);
+                        return;
+                    case 3:
+                        biblioteca.listarLivros();
+                        return;
+                    case 4:
+                        biblioteca.listarRevistas();
+                        return;
+                    case 5:
+                        biblioteca.removerLivro(scan);
+                        return;
+                    case 6:
+                        biblioteca.removerRevista(scan);
+                        return;
+                    case 7:
+                        System.out.println("Saindo do sistema");
+                        return;
+                    default:
+                        System.out.println("Opção inválida, tente novamente...");
+
+
+                }
+
+            }catch (InputMismatchException e){
+                System.out.println("Opção inválida, tente novamente... ");
+            }
+
+        }while(opcaoUsuario != 7);
+
+
+    }
+}
