@@ -1,7 +1,5 @@
 package Biblioteca_2_fase;
 
-import Banco.Conta;
-import Banco.Gerenciamento;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -24,25 +22,25 @@ public class Main {
 
                     case 1:
                         biblioteca.adicionarLivro(scan);
-                        return;
+                        break;
                     case 2:
                         biblioteca.adicionarRevista(scan);
-                        return;
+                        break;
                     case 3:
                         biblioteca.listarLivros();
-                        return;
+                        break;
                     case 4:
                         biblioteca.listarRevistas();
-                        return;
+                        break;
                     case 5:
                         biblioteca.removerLivro(scan);
-                        return;
+                        break;
                     case 6:
                         biblioteca.removerRevista(scan);
-                        return;
+                        break;
                     case 7:
                         System.out.println("Saindo do sistema");
-                        return;
+                        break;
                     default:
                         System.out.println("Opção inválida, tente novamente...");
 
