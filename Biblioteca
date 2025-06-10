@@ -18,6 +18,7 @@ public class Biblioteca {
 
     public void adicionarLivro(Scanner scan){
         System.out.println("Digite o autor do livro: ");
+        scan.nextLine();
         String autor = scan.nextLine();
         System.out.println("Digite o título do livro: ");
         String titulo = scan.nextLine();
@@ -33,22 +34,23 @@ public class Biblioteca {
 
                 case 1:
                     genero = Genero.AÇÃO;
+                    break;
 
                 case 2:
                     genero = Genero.AVENTURA;
-
+                    break;
                 case 3:
                     genero = Genero.ROMANCE;
-
+                    break;
                 case 4:
                     genero = Genero.TERROR;
-
+                    break;
                 case 5:
                     genero = Genero.SUSPENSE;
-
+                    break;
                 case 6:
                     genero = Genero.INFORMÁTIVO;
-
+                    break;
                 default:
                     System.out.println("Opção inválida, tente novamente...");
             }
@@ -63,14 +65,18 @@ public class Biblioteca {
     }
 
     public void removerLivro(Scanner scan){
-        System.out.println("Digite o título do livro que você deseja remover: ");
-        String tituloRemove = scan.nextLine();
+        if(livros.isEmpty()){
+            System.out.println("Não há livros cadastrados.");
+        }else {
+            System.out.println("Digite o título do livro que você deseja remover: ");
+            scan.nextLine();
+            String tituloRemove = scan.nextLine();
 
-        for(Livro livro : livros){
-            if (livro.equals(tituloRemove)){
-
-                livros.remove(livro);
-                System.out.println("Livro removido com sucesso!!!");
+            for (Livro livro : livros) {
+                if (livro.getTitulo().equalsIgnoreCase(tituloRemove)) {
+                    livros.remove(livro);
+                    System.out.println("Livro removido com sucesso!!!");
+                }
             }
         }
     }
@@ -78,33 +84,41 @@ public class Biblioteca {
     public void adicionarRevista(Scanner scan){
 
         System.out.println("Digite o autor da revista: ");
+        scan.nextLine();
         String autorRevista = scan.nextLine();
         System.out.println("Digite o título da revista: ");
         String tituloRevista = scan.nextLine();
+        System.out.println("Digite o número da revista: ");
+        int numeroRevista = scan.nextInt();
 
+        Boolean livroExistente = false;
         for (Revista revista : revistas){
 
-            if(tituloRevista.equals(revista)){
-                System.out.println("Livro já adicionado, tente com outro livro.");
-            }else if(autorRevista.equals(revista)){
-                System.out.println("Autor já adicionado, tente com outro autor.");
-            }else{
-                Revista revista1 = new Revista(autorRevista,tituloRevista);
-                revistas.add(revista1);
-                System.out.println("Revista adicionada com sucesso!!!");
+            if(revista.getTitulo().equals(revista)){
+                livroExistente = true;
             }
         }
+
+        if(livroExistente == true){
+            System.out.println("Livro já cadastrado, tente novamente...");
+        }else {
+            Revista revista1 = new Revista(autorRevista, tituloRevista,numeroRevista);
+            revistas.add(revista1);
+            System.out.println("Revista adicionada com sucesso!!!");
+        }
+
     }
 
     public void removerRevista(Scanner scan){
-        System.out.println("Digite a revista que você quer remover: ");
-        String tituloRemove = scan.nextLine();
 
         if(revistas.isEmpty()){
             System.out.println("Não há revistas a serem removidas.");
+
         }else{
+            System.out.println("Digite a revista que você quer remover: ");
+            String tituloRemove = scan.nextLine();
             for (Revista revista : revistas){
-                if (revista.equals(tituloRemove)){
+                if (revista.getTitulo().equalsIgnoreCase(tituloRemove)){
                     revistas.remove(revista);
                     System.out.println("Revista removida com sucesso!!!");
                 }
@@ -120,6 +134,7 @@ public class Biblioteca {
        }else{
            for(Livro livro : livros){
                System.out.println(livro);
+               System.out.println("Gênero = " + livro.getGenero());;
            }
        }
     }
@@ -131,6 +146,7 @@ public class Biblioteca {
         }else{
             for(Revista revista : revistas){
                 System.out.println(revista);
+                System.out.println("Código = "+ revista.getNumero());
             }
         }
     }
