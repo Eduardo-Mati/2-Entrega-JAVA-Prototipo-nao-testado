@@ -28,9 +28,8 @@ public abstract class Material {
 
     @Override
     public String toString() {
-        return "Material{" +
-                "Autor='" + Autor + '\'' +
-                ", Titulo='" + Titulo + '\'' +
-                '}';
+        return
+                "Autor = " + Autor+
+                ", Titulo = " + Titulo;
     }
 }
