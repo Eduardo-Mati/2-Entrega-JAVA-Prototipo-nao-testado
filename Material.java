@@ -1,0 +1,35 @@
+package Biblioteca_2_fase;
+
+public abstract class Material {
+
+    private String Autor;
+    private String Titulo;
+
+    public Material(String autor, String titulo) {
+        Autor = autor;
+        Titulo = titulo;
+    }
+
+    public String getAutor() {
+        return Autor;
+    }
+
+    public void setAutor(String autor) {
+        Autor = autor;
+    }
+
+    public String getTitulo() {
+        return Titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        Titulo = titulo;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "Autor = " + Autor+
+                ", Titulo = " + Titulo;
+    }
+}
