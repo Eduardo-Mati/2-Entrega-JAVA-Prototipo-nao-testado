@@ -1,19 +1,19 @@
 package Biblioteca_2_fase;
 
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Biblioteca {
     Scanner scan = new Scanner(System.in);
 
-    private HashSet<Livro> livros;
-    private HashSet<Revista> revistas;
+    private ArrayList<Livro> livros;
+    private ArrayList<Revista> revistas;
 
     public Biblioteca(){
-        this.livros = new HashSet<>();
-        this.revistas = new HashSet<>();
+        this.livros = new ArrayList<>();
+        this.revistas = new ArrayList<>();
     }
 
     public void adicionarLivro(Scanner scan){
@@ -24,10 +24,11 @@ public class Biblioteca {
         String titulo = scan.nextLine();
         Genero genero = null;
 
-        System.out.println("Selecione o gênero do livro: "+"\n1) Ação "+"\n2)Aventura"+"\n3) Romance"+
+        System.out.println("Selecione o gênero do livro: "+"\n1) Ação "+"\n2) Aventura"+"\n3) Romance"+
                 "\n4) Terror"+"\n5) Suspense"+"\n6) Informátivo");
         System.out.println("Selecione uma opção: ");
         int opcaoUsuario = scan.nextInt();
+
         try{
 
             switch (opcaoUsuario){
@@ -35,7 +36,6 @@ public class Biblioteca {
                 case 1:
                     genero = Genero.AÇÃO;
                     break;
-
                 case 2:
                     genero = Genero.AVENTURA;
                     break;
@@ -59,9 +59,13 @@ public class Biblioteca {
         }catch (InputMismatchException e){
             System.out.println("Opção inválida, tente novamente...");
         }
-        Livro livro1 = new Livro(autor,titulo,genero);
-        System.out.println("Livro adicionado com sucesso!!!");
-        livros.add(livro1);
+        if(livros.contains(titulo)){
+            System.out.println("Livro já cadastrado, tente novamente...");
+        }else {
+            Livro livro1 = new Livro(autor, titulo, genero);
+            System.out.println("Livro adicionado com sucesso!!!");
+            livros.add(livro1);
+        }
     }
 
     public void removerLivro(Scanner scan){
@@ -147,6 +151,68 @@ public class Biblioteca {
             for(Revista revista : revistas){
                 System.out.println(revista);
                 System.out.println("Código = "+ revista.getNumero());
+            }
+        }
+    }
+
+    public void pesquisarLivro(Scanner scan){
+
+        if(livros.isEmpty()){
+            System.out.println("Não há livros cadastrados.");
+        }else {
+            System.out.println("Selecione o gênero do livro que você deseja pesquisar: " + "\n1) Ação " + "\n2) Aventura" + "\n3) Romance" +
+                    "\n4) Terror" + "\n5) Suspense" + "\n6) Informátivo");
+            System.out.println("Selecione uma opção: ");
+            int opcaoUsuario = scan.nextInt();
+            Genero generoPesquisa = null;
+
+
+            try {
+
+                switch (opcaoUsuario) {
+
+                    case 1:
+                        generoPesquisa = Genero.AÇÃO;
+                        break;
+                    case 2:
+                        generoPesquisa = Genero.AVENTURA;
+                        break;
+                    case 3:
+                        generoPesquisa = Genero.ROMANCE;
+                        break;
+                    case 4:
+                        generoPesquisa = Genero.TERROR;
+                        break;
+                    case 5:
+                        generoPesquisa = Genero.SUSPENSE;
+                        break;
+                    case 6:
+                        generoPesquisa = Genero.INFORMÁTIVO;
+                        break;
+                    default:
+                        System.out.println("Opção inválida, tente novamente...");
+                }
+
+
+            } catch (InputMismatchException e) {
+                System.out.println("Opção inválida, tente novamente...");
+            }
+
+            for (Livro livro : livros) {
+                if (livro.getGenero().equals(generoPesquisa)) {
+                    System.out.println(livro);
+                }
+            }
+        }
+    }
+    public void pesquisarRevista(Scanner scan){
+
+        System.out.println("Digite o código da revista");
+        int codigoPesquisa = scan.nextInt();
+
+        for(Revista revista : revistas){
+            if(revista.getNumero() == codigoPesquisa){
+                System.out.println(revista);
             }
         }
     }
