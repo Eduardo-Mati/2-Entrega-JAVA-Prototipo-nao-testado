@@ -12,7 +12,9 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca();
 
         do{
-            System.out.println("__________MENU__________"+"\n1) Adicionar livro"+"\n2) Adicionar revista"+"\n3) Exibir livros"+"\n4) Exibir revistas"+"\n5) Excluir livro"+"\n6) Excluir revista"+"\n7) Sair do sistema");
+            System.out.println("__________MENU__________"+"\n1) Adicionar livro"+"\n2) Adicionar revista"+
+                    "\n3) Exibir livros"+"\n4) Exibir revistas"+"\n5) Excluir livro"+"\n6) Excluir revista"+"\n7) Pesquisar livros por gênero"+
+                    "\n8) Pesquisar revista por código"+"\n9) Sair do sistema");
             System.out.println("Selecione uma opção: ");
             opcaoUsuario = scan.nextInt();
 
@@ -39,6 +41,12 @@ public class Main {
                         biblioteca.removerRevista(scan);
                         break;
                     case 7:
+                        biblioteca.pesquisarLivro(scan);
+                        break;
+                    case 8:
+                        biblioteca.pesquisarRevista(scan);
+                        break;
+                    case 9:
                         System.out.println("Saindo do sistema");
                         break;
                     default:
@@ -51,7 +59,7 @@ public class Main {
                 System.out.println("Opção inválida, tente novamente... ");
             }
 
-        }while(opcaoUsuario != 7);
+        }while(opcaoUsuario != 9);
 
 
     }
