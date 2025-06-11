@@ -9,20 +9,16 @@ public class Livro extends Material{
     public Livro(String Autor,String Titulo,Genero genero) {
         super(Autor,Titulo);
         this.genero = genero;
+
     }
 
     public Genero getGenero() {
         return genero;
     }
 
-    public void setGenero(Genero genero) {
-        this.genero = genero;
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Livro livro = (Livro) o;
+        if (!(o instanceof Livro livro)) return false;
         return genero == livro.genero;
     }
 
